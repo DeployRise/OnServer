@@ -1,0 +1,10 @@
+[Unit]
+Description=Servicio de monitoreo
+
+[Service]
+ExecStart=glances -w -p 27017 -t 1
+Restart=always
+RestartSec=10
+
+[Install]
+WantedBy=multi-user.target
