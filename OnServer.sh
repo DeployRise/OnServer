@@ -21,7 +21,7 @@ echo "y" | ufw enable
 ufw allow 22/tcp
 ufw allow 80/tcp
 ufw allow 443/tcp
-ufw allow 27017/tcp
+ufw allow 8080/tcp
 
 # Enabling traffic from the local network
 ufw allow from 10.0.0.0/8
