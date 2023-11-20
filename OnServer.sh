@@ -9,6 +9,11 @@ apt install wget -y
 apt install unzip -y
 apt install nginx -y
 
+# Tools network
+apt install iperf3 -y
+curl -s https://packagecloud.io/install/repositories/ookla/speedtest-cli/script.deb.sh | bash
+apt install speedtest -y
+
 # .NET Core LTS
 curl -sSL https://dot.net/v1/dotnet-install.sh | bash /dev/stdin --channel LTS --install-dir /usr/share/dotnet
 ln -s /usr/share/dotnet/dotnet /usr/bin/dotnet
@@ -32,10 +37,10 @@ ufw allow from 192.168.0.0/16
 apt install python3
 apt install python3-dev -y
 apt install python3-pip -y
-wget -O- https://bit.ly/glances | /bin/bash
+wget -O- https://raw.githubusercontent.com/nicolargo/glancesautoinstall/master/install.sh | /bin/bash
   
 # Glances Service
 cd /etc/systemd/system/
-wget -O glances-iqx5u.service "https://raw.githubusercontent.com/DeployRise/OnServer/main/glances-iqx5u.service"
+wget -O glances-iqx5u.service https://raw.githubusercontent.com/DeployRise/OnServer/main/glances-iqx5u.service
 systemctl start glances-iqx5u
 systemctl enable glances-iqx5u
