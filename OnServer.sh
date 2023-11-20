@@ -9,11 +9,6 @@ apt install wget -y
 apt install unzip -y
 apt install nginx -y
 
-# Tools network
-apt install iperf3 -y
-curl -s https://packagecloud.io/install/repositories/ookla/speedtest-cli/script.deb.sh | bash
-apt install speedtest -y
-
 # .NET Core LTS
 curl -sSL https://dot.net/v1/dotnet-install.sh | bash /dev/stdin --channel LTS --install-dir /usr/share/dotnet
 ln -s /usr/share/dotnet/dotnet /usr/bin/dotnet
