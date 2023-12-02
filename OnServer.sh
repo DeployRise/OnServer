@@ -8,7 +8,6 @@ apt install curl -y
 apt install wget -y
 apt install unzip -y
 apt install nginx -y
-apt install iperf3 -y
 
 # .NET Core LTS
 curl -sSL https://dot.net/v1/dotnet-install.sh | bash /dev/stdin --channel LTS --install-dir /usr/share/dotnet
@@ -23,7 +22,6 @@ ufw allow 22/tcp
 ufw allow 80/tcp
 ufw allow 443/tcp
 ufw allow 27017/tcp
-ufw allow 5201/udp
 
 # Enabling traffic from the local network
 # ufw allow from 10.0.0.0/8
