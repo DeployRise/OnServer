@@ -23,11 +23,6 @@ ufw allow 80/tcp
 ufw allow 443/tcp
 ufw allow 27017/tcp
 
-# Enabling traffic from the local network
-# ufw allow from 10.0.0.0/8
-# ufw allow from 172.16.0.0/12
-# ufw allow from 192.168.0.0/16
-
 # Glances
 apt install python3
 apt install python3-dev -y
@@ -36,6 +31,6 @@ wget -O- https://raw.githubusercontent.com/nicolargo/glancesautoinstall/master/i
   
 # Glances Service
 cd /etc/systemd/system/
-wget -O glances-iqx5u.service https://raw.githubusercontent.com/DeployRise/OnServer/main/glances-iqx5u.service
-systemctl start glances-iqx5u
-systemctl enable glances-iqx5u
+wget -O glances.service https://raw.githubusercontent.com/DeployRise/OnServer/main/glances.service
+systemctl start glances
+systemctl enable glances
