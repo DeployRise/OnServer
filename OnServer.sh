@@ -1,5 +1,14 @@
 #!/bin/bash
 
+# Skip UFW
+SKIP_UFW=false
+while getopts ":skipufw" opt; do
+  case $opt in
+    skipufw) SKIP_UFW=true ;;
+    \?) ;;
+  esac
+done
+
 # Updates the packages
 DEBIAN_FRONTEND=noninteractive apt-get update && DEBIAN_FRONTEND=noninteractive apt-get -y upgrade
 
@@ -14,14 +23,17 @@ curl -sSL https://dot.net/v1/dotnet-install.sh | bash /dev/stdin --channel LTS -
 ln -s /usr/share/dotnet/dotnet /usr/bin/dotnet
 
 # Firewall
-apt install ufw -y
-echo "y" | ufw enable
-
-# Enabling traffic from the internet
-ufw allow 22/tcp
-ufw allow 80/tcp
-ufw allow 443/tcp
-ufw allow 27017/tcp
+if [ "$SKIP_UFW" = false ]; then
+  # Install Firewall
+  apt install ufw -y
+  echo "y" | ufw enable
+    
+  # Enabling traffic from the internet
+  ufw allow 22/tcp
+  ufw allow 80/tcp
+  ufw allow 443/tcp
+  ufw allow 27017/tcp
+fi
 
 # Glances
 apt install python3
