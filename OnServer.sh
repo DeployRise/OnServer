@@ -24,6 +24,10 @@ ufw allow 80/tcp
 ufw allow 443/tcp
 ufw allow 27017/tcp
 
+# ACME
+curl https://get.acme.sh | sh -s email=ljchuello@gmail.com
+ln -s /root/.acme.sh/acme.sh /usr/bin/acme.sh
+
 # Glances
 apt install python3
 apt install python3-dev -y
