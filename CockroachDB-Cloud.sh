@@ -10,11 +10,7 @@ apt install unzip -y
 apt install nginx -y
 apt install nano -y
 
-# .NET Core LTS
-curl -sSL https://dot.net/v1/dotnet-install.sh | bash /dev/stdin --channel LTS --install-dir /usr/share/dotnet
-ln -s /usr/share/dotnet/dotnet /usr/bin/dotnet
-
-# Clock
+# Chrony
 apt install chrony -y
 systemctl enable chrony
 systemctl start chrony
@@ -25,3 +21,20 @@ mkdir -p /usr/local/lib/cockroach
 cp -i cockroach-v23.1.14.linux-amd64/lib/libgeos.so /usr/local/lib/cockroach/
 cp -i cockroach-v23.1.14.linux-amd64/lib/libgeos_c.so /usr/local/lib/cockroach/
 which cockroach
+
+# Generate certificates
+mkdir certs
+mkdir my-safe-directory
+
+# Glances
+apt install python3
+apt install python3-dev -y
+apt install python3-pip -y
+wget -O- https://raw.githubusercontent.com/nicolargo/glancesautoinstall/master/install.sh | /bin/bash
+
+# Glances Service
+cd /etc/systemd/system/
+wget -O glances.service https://raw.githubusercontent.com/DeployRise/OnServer/main/glances.service
+systemctl start glances
+systemctl enable glances
+cd /root/
