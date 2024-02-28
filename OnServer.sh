@@ -29,6 +29,11 @@ ufw allow 80/tcp
 ufw allow 443/tcp
 ufw allow 27017/tcp
 
+# Chrony
+apt install chrony -y
+systemctl enable chrony
+systemctl start chrony
+
 # Glances
 apt install python3
 apt install python3-dev -y
