@@ -38,8 +38,7 @@ systemctl start chrony
 apt install python3
 apt install python3-dev -y
 apt install python3-pip -y
-rm /usr/lib/python3.*/EXTERNALLY-MANAGED
-wget -O- https://raw.githubusercontent.com/nicolargo/glancesautoinstall/master/install.sh | /bin/bash
+pip install glances[all] --break-system-packages
 
 # Glances Service
 cd /etc/systemd/system/
