@@ -37,11 +37,6 @@ apt install chrony -y
 systemctl enable chrony
 systemctl start chrony
 
-# Tools
-curl -s https://packagecloud.io/install/repositories/ookla/speedtest-cli/script.deb.sh | sudo bash
-apt install speedtest -y
-apt install iperf3 -y
-
 # Glances
 apt install python3 -y
 apt install python3-dev -y
