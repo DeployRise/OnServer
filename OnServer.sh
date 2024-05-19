@@ -12,6 +12,7 @@ apt install wget -y
 apt install unzip -y
 apt install nginx -y
 apt install nano -y
+apt install apenssl -y
 
 # .NET Core LTS
 curl -sSL https://dot.net/v1/dotnet-install.sh | bash /dev/stdin --channel LTS --install-dir /usr/share/dotnet
