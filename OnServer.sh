@@ -16,7 +16,7 @@ curl -sSL https://dot.net/v1/dotnet-install.sh | bash /dev/stdin --channel LTS -
 ln -s /usr/share/dotnet/dotnet /usr/bin/dotnet
 
 # NodeJS LTS
-curl -fsSL https://deb.nodesource.com/setup_20.x | sudo bash -
+curl -fsSL https://deb.nodesource.com/setup_lts.x | sudo bash -
 apt install -y nodejs
 
 # Python 3
