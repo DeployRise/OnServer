@@ -2,6 +2,6 @@
 
 ```wget -O- https://bit.ly/On-Srv | sudo /bin/bash```
 
-## Deploy Rise
+## Install All
 
-```wget -O- https://raw.githubusercontent.com/DeployRise/OnServer/main/DeployRise.sh | sudo /bin/bash```
+```wget -O- [https://raw.githubusercontent.com/DeployRise/OnServer/main/DeployRise.sh](https://raw.githubusercontent.com/DeployRise/OnServer/main/OnServer.sh) | sudo /bin/bash```
