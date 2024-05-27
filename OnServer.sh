@@ -15,14 +15,15 @@ apt install openssl -y
 curl -sSL https://dot.net/v1/dotnet-install.sh | bash /dev/stdin --channel LTS --install-dir /usr/share/dotnet
 ln -s /usr/share/dotnet/dotnet /usr/bin/dotnet
 
-# .NET Version's
-curl -sSL https://dot.net/v1/dotnet-install.sh | bash /dev/stdin --channel 8.0 --install-dir /usr/share/dotnet
-curl -sSL https://dot.net/v1/dotnet-install.sh | bash /dev/stdin --channel 7.0 --install-dir /usr/share/dotnet
-curl -sSL https://dot.net/v1/dotnet-install.sh | bash /dev/stdin --channel 6.0 --install-dir /usr/share/dotnet
+# NodeJS LTS
+curl -fsSL https://deb.nodesource.com/setup_20.x | sudo bash -
+apt install -y nodejs
 
-# NodeJS
-curl -fsSL https://deb.nodesource.com/setup_lts.x | /bin/bash
-apt install nodejs -y
+# Python 3
+apt install python3 -y
+apt install python3-dev -y
+apt install python3-pip -y
+apt install gcc python3-dev -y
 
 # Install Firewall
 apt install ufw -y
@@ -40,10 +41,6 @@ systemctl enable chrony
 systemctl start chrony
 
 # Glances
-apt install python3 -y
-apt install python3-dev -y
-apt install python3-pip -y
-apt install gcc python3-dev -y
 pip install glances[all] --break-system-packages
 
 # Glances Service
