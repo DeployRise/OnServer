@@ -1,8 +1,5 @@
 #!/bin/bash
 
-# Url
-# wget -O- https://bit.ly/On-Srv | sudo /bin/bash
-
 # Updates the packages
 DEBIAN_FRONTEND=noninteractive apt-get update && DEBIAN_FRONTEND=noninteractive apt-get -y upgrade
 
@@ -22,6 +19,10 @@ ln -s /usr/share/dotnet/dotnet /usr/bin/dotnet
 curl -sSL https://dot.net/v1/dotnet-install.sh | bash /dev/stdin --channel 8.0 --install-dir /usr/share/dotnet
 curl -sSL https://dot.net/v1/dotnet-install.sh | bash /dev/stdin --channel 7.0 --install-dir /usr/share/dotnet
 curl -sSL https://dot.net/v1/dotnet-install.sh | bash /dev/stdin --channel 6.0 --install-dir /usr/share/dotnet
+
+# NodeJS
+curl -fsSL https://deb.nodesource.com/setup_lts.x | /bin/bash
+apt install nodejs -y
 
 # Install Firewall
 apt install ufw -y
