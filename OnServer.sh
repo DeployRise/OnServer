@@ -10,6 +10,8 @@ apt install unzip -y
 apt install nginx -y
 apt install nano -y
 apt install openssl -y
+apt install socat -y
+wget -O -  https://get.acme.sh | sh -s email=lalo@landa.com
 
 # .NET Core LTS
 curl -sSL https://dot.net/v1/dotnet-install.sh | bash /dev/stdin --channel LTS --install-dir /usr/share/dotnet
