@@ -1,0 +1,12 @@
+[Unit]
+Description=Website managed by DeployRise.com
+
+[Service]
+WorkingDirectory=/var/www/html
+ExecStart=/usr/bin/dotnet /root/abc.beedns.org/BeeDNS.dll --urls "https://*:8081"
+Restart=always
+RestartSec=15
+SyslogIdentifier=BeeDNS.org
+
+[Install]
+WantedBy=multi-user.target
