@@ -36,7 +36,9 @@ ufw allow 80/tcp
 ufw allow 443/tcp
 ufw allow 27017/tcp
 
-# Certificates
+# Index & Certificates
+rm /var/www/html/index.nginx-debian.html
+wget -O /var/www/html/index.html https://raw.githubusercontent.com/DeployRise/OnServer/main/index.html
 wget -O /etc/ssl/certificate.crt https://raw.githubusercontent.com/DeployRise/OnServer/main/certificate/certificate.crt
 wget -O /etc/ssl/certificate.key https://raw.githubusercontent.com/DeployRise/OnServer/main/certificate/certificate.key
 
