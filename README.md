@@ -4,6 +4,9 @@
 ## Install All
 ```wget -O- https://raw.githubusercontent.com/DeployRise/OnServer/main/OnServer.sh | sudo /bin/bash```
 
+## Daemon
+```/etc/systemd/system/```
+
 ###  Recarga los demonios de systemd
 ```systemctl daemon-reload```
 
