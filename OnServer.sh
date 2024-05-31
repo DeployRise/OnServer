@@ -15,6 +15,7 @@ wget -O -  https://get.acme.sh | sh -s email=lalo@landa.com
 # .NET Core LTS
 curl -sSL https://dot.net/v1/dotnet-install.sh | bash /dev/stdin --channel LTS --install-dir /usr/share/dotnet
 ln -s /usr/share/dotnet/dotnet /usr/bin/dotnet
+dotnet dev-certs https
 
 # NodeJS LTS
 curl -fsSL https://deb.nodesource.com/setup_lts.x | sudo bash -
