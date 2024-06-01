@@ -1,15 +1,14 @@
 server {
     listen 80;
     server_name _;
-    server_name 103.beedns.org;
-    server_name 104.beedns.org;
+    server_name xxx.beedns.org;
+
+    root /var/www/html;
+    
+    index index.html index.htm index.nginx-debian.html;
 
     location / {
-        proxy_pass http://localhost:27017;
-        proxy_set_header Host $host;
-        proxy_set_header X-Real-IP $remote_addr;
-        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
-        proxy_set_header X-Forwarded-Proto $scheme;
+        try_files $uri $uri/ =404;
     }
 }
 
