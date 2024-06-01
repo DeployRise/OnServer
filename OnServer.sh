@@ -13,8 +13,9 @@ apt install openssl -y
 
 #Zero SSL
 wget -O -  https://get.acme.sh | sh -s email=lalo@landa.com
-/root/.acme.sh/acme.sh --register-account --server zerossl --eab-kid qRFkHn3MHnHCiX6_tBOaTQ --eab-hmac-key e7AN2_b3Np-_rdUzqfHQYpmKybF59e42S0mGV68Y1arn7PSqIUlLw8ymVgClCpZ_1f62Yu490DZj3odWNWTcEw
-
+/root/.acme.sh/acme.sh --register-account --server zerossl \
+        --eab-kid V4Rz23Areygob7n72PdEpw \
+        --eab-hmac-key Zkf6P-8SfeIcwR48WwHw8nKRadSXlXHBm13lm0bqXShB6meCE8y_SgoCZe4SPfMXNSGyrpxjIytPzfDirtw5Nw
 # Firewall
 apt install ufw -y
 echo "y" | ufw enable
