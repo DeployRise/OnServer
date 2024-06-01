@@ -10,7 +10,10 @@ apt install unzip -y
 apt install nginx -y
 apt install nano -y
 apt install openssl -y
+
+#Zero SSL
 wget -O -  https://get.acme.sh | sh -s email=lalo@landa.com
+/root/.acme.sh/acme.sh --register-account --server zerossl --eab-kid qRFkHn3MHnHCiX6_tBOaTQ --eab-hmac-key e7AN2_b3Np-_rdUzqfHQYpmKybF59e42S0mGV68Y1arn7PSqIUlLw8ymVgClCpZ_1f62Yu490DZj3odWNWTcEw
 
 # Firewall
 apt install ufw -y
