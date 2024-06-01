@@ -3,6 +3,10 @@ server {
     server_name _;
     server_name xxx.beedns.org;
 
+    location ~ "^/\.well-known/acme-challenge/([-_a-zA-Z0-9]+)$" {
+        return 302 http://elb1.beedns.org$request_uri;
+    }
+
     root /var/www/html;
     
     index index.html index.htm index.nginx-debian.html;
