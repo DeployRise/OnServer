@@ -21,10 +21,11 @@ ufw allow 443/tcp
 ufw allow 27017/tcp
 
 # Index & Certificates
-# rm /var/www/html/index.nginx-debian.html
-# wget -O /var/www/html/index.html https://raw.githubusercontent.com/DeployRise/OnServer/main/tools/index.html
-# wget -O /etc/ssl/certificate.crt https://raw.githubusercontent.com/DeployRise/OnServer/main/tools/certificate.crt
-# wget -O /etc/ssl/certificate.key https://raw.githubusercontent.com/DeployRise/OnServer/main/tools/certificate.key
+rm /var/www/html/index.nginx-debian.html
+wget -O /var/www/html/index.html https://raw.githubusercontent.com/DeployRise/OnServer/main/tools/index.html
+sudo openssl genpkey -algorithm RSA -out /etc/ssl/certificate.key -pkeyopt rsa_keygen_bits:2048
+sudo openssl req -new -key /etc/ssl/certificate.key -out /etc/ssl/certificate.csr -subj "/CN=ctcs490qf5ob1d6hje.deployrise.com"
+sudo openssl x509 -req -days 5475 -in /etc/ssl/certificate.csr -signkey /etc/ssl/certificate.key -out /etc/ssl/certificate.crt
 
 # .NET Core LTS
 curl -sSL https://dot.net/v1/dotnet-install.sh | bash /dev/stdin --channel LTS --install-dir /usr/share/dotnet
