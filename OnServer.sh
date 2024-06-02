@@ -10,12 +10,8 @@ apt install unzip -y
 apt install nginx -y
 apt install nano -y
 apt install openssl -y
-
-#Zero SSL
 wget -O -  https://get.acme.sh | sh -s email=lalo@landa.com
-/root/.acme.sh/acme.sh --register-account --server zerossl \
-        --eab-kid V4Rz23Areygob7n72PdEpw \
-        --eab-hmac-key Zkf6P-8SfeIcwR48WwHw8nKRadSXlXHBm13lm0bqXShB6meCE8y_SgoCZe4SPfMXNSGyrpxjIytPzfDirtw5Nw
+
 # Firewall
 apt install ufw -y
 echo "y" | ufw enable
@@ -25,10 +21,10 @@ ufw allow 443/tcp
 ufw allow 27017/tcp
 
 # Index & Certificates
-rm /var/www/html/index.nginx-debian.html
-wget -O /var/www/html/index.html https://raw.githubusercontent.com/DeployRise/OnServer/main/tools/index.html
-wget -O /etc/ssl/certificate.crt https://raw.githubusercontent.com/DeployRise/OnServer/main/tools/certificate.crt
-wget -O /etc/ssl/certificate.key https://raw.githubusercontent.com/DeployRise/OnServer/main/tools/certificate.key
+# rm /var/www/html/index.nginx-debian.html
+# wget -O /var/www/html/index.html https://raw.githubusercontent.com/DeployRise/OnServer/main/tools/index.html
+# wget -O /etc/ssl/certificate.crt https://raw.githubusercontent.com/DeployRise/OnServer/main/tools/certificate.crt
+# wget -O /etc/ssl/certificate.key https://raw.githubusercontent.com/DeployRise/OnServer/main/tools/certificate.key
 
 # .NET Core LTS
 curl -sSL https://dot.net/v1/dotnet-install.sh | bash /dev/stdin --channel LTS --install-dir /usr/share/dotnet
