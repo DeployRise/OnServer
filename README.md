@@ -4,14 +4,7 @@
 ## Install All
 ```wget -O- https://raw.githubusercontent.com/DeployRise/OnServer/main/OnServer.sh | sudo /bin/bash```
 
-## Daemon
-```/etc/systemd/system/```
-
-###  Recarga los demonios de systemd
-```systemctl daemon-reload```
-
-### Habilita el servicio
-```systemctl enable dotnetrun.service```
-
-### Iniciar el servicio inmediatamente
-```systemctl start dotnetrun.service```
+## acme.sh
+```acme.sh --issue --nginx --force -d example.com```
+```acme.sh --register-account -m lalo@landa.com --server google --eab-kid xxx --eab-hmac-key xxx```
+```acme.sh --issue --nginx --force --server google -d example.com```
