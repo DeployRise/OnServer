@@ -9,6 +9,7 @@ apt install wget -y
 apt install unzip -y
 apt install nginx -y
 apt install nano -y
+apt install sed -y
 apt install openssl -y
 wget -O -  https://get.acme.sh | sh -s email=lalo@landa.com
 
@@ -52,6 +53,10 @@ pip install glances[all] --break-system-packages
 wget -O /etc/systemd/system/glances.service https://raw.githubusercontent.com/DeployRise/OnServer/main/glances.service
 systemctl start glances
 systemctl enable glances
+
+# IPv4 --force
+sed -i 's/#precedence ::ffff:0:0\/96  100/precedence ::ffff:0:0\/96  100/' /etc/gai.conf
+systemctl restart networking
 
 # Gossip
 HOSTNAME=$(hostname)
