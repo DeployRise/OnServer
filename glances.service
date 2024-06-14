@@ -2,7 +2,7 @@
 Description=Monitoring service
 
 [Service]
-ExecStart=glances -w -p 27017 -t 1
+ExecStart=glances -w -p 27017 -t 3
 Restart=always
 RestartSec=10
 
