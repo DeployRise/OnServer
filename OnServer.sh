@@ -33,6 +33,12 @@ curl -sSL https://dot.net/v1/dotnet-install.sh | bash /dev/stdin --channel LTS -
 ln -s /usr/share/dotnet/dotnet /usr/bin/dotnet
 dotnet dev-certs https
 
+# .NET Core
+curl -sSL https://dot.net/v1/dotnet-install.sh | bash /dev/stdin --channel 8.0 --install-dir /usr/share/dotnet
+ln -s /usr/share/dotnet/dotnet /usr/bin/dotnet
+curl -sSL https://dot.net/v1/dotnet-install.sh | bash /dev/stdin --channel 6.0 --install-dir /usr/share/dotnet
+ln -s /usr/share/dotnet/dotnet /usr/bin/dotnet
+
 # NodeJS LTS
 curl -fsSL https://deb.nodesource.com/setup_lts.x | sudo bash -
 apt install -y nodejs
@@ -57,10 +63,3 @@ systemctl enable glances
 # IPv4 --force
 sed -i 's/#precedence ::ffff:0:0\/96  100/precedence ::ffff:0:0\/96  100/' /etc/gai.conf
 systemctl restart networking
-
-# Gossip
-HOSTNAME=$(hostname)
-IP=$(curl -s https://checkip.amazonaws.com)
-
-# Gossip | Dev
-curl --location "https://monitor-certain-blatantly.ngrok-free.app/api/Values?hostname=$HOSTNAME&dirIP=$IP" --header "ngrok-skip-browser-warning: 25628a09-ab5c-44db-8a7d-8727a30ca26e"
