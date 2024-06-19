@@ -2,7 +2,7 @@
 Description=DeployRise.com
 
 [Service]
-ExecStart=/usr/bin/dotnet /root/DPService/DPService.dll
+ExecStart=/usr/bin/dotnet /var/DeployRise/DeployRiseService/DPService.dll
 Restart=always
 RestartSec=15
 SyslogIdentifier=DeployRise.com
