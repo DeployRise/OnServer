@@ -20,6 +20,7 @@ ufw allow 22/tcp
 ufw allow 80/tcp
 ufw allow 443/tcp
 ufw allow 27017/tcp
+ufw allow 50000:60000
 
 # Index & Certificates
 rm /var/www/html/index.nginx-debian.html
@@ -35,8 +36,6 @@ dotnet dev-certs https
 
 # .NET Core
 curl -sSL https://dot.net/v1/dotnet-install.sh | bash /dev/stdin --channel 8.0 --install-dir /usr/share/dotnet
-ln -s /usr/share/dotnet/dotnet /usr/bin/dotnet
-curl -sSL https://dot.net/v1/dotnet-install.sh | bash /dev/stdin --channel 6.0 --install-dir /usr/share/dotnet
 ln -s /usr/share/dotnet/dotnet /usr/bin/dotnet
 
 # NodeJS LTS
