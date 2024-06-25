@@ -20,7 +20,7 @@ ufw allow 22/tcp
 ufw allow 80/tcp
 ufw allow 443/tcp
 ufw allow 27017/tcp
-ufw allow 50000:60000
+ufw allow 50000:60000/tcp
 
 # Index & Certificates
 rm /var/www/html/index.nginx-debian.html
