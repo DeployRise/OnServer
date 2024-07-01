@@ -20,14 +20,13 @@ ufw allow 22/tcp
 ufw allow 80/tcp
 ufw allow 443/tcp
 ufw allow 27017/tcp
-ufw allow 50000:60000/tcp
 
 # Index & Certificates
 rm /var/www/html/index.nginx-debian.html
 wget -O /var/www/html/index.html https://raw.githubusercontent.com/DeployRise/OnServer/main/tools/index.html
-sudo openssl genpkey -algorithm RSA -out /etc/ssl/certificate.key -pkeyopt rsa_keygen_bits:2048
-sudo openssl req -new -key /etc/ssl/certificate.key -out /etc/ssl/certificate.csr -subj "/CN=ctcs490qf5ob1d6hje.deployrise.com"
-sudo openssl x509 -req -days 5475 -in /etc/ssl/certificate.csr -signkey /etc/ssl/certificate.key -out /etc/ssl/certificate.crt
+openssl genpkey -algorithm RSA -out /etc/ssl/certificate.key -pkeyopt rsa_keygen_bits:2048
+openssl req -new -key /etc/ssl/certificate.key -out /etc/ssl/certificate.csr -subj "/CN=ctcs490qf5ob1d6hje.deployrise.com"
+openssl x509 -req -days 5475 -in /etc/ssl/certificate.csr -signkey /etc/ssl/certificate.key -out /etc/ssl/certificate.crt
 
 # .NET Core LTS
 curl -sSL https://dot.net/v1/dotnet-install.sh | bash /dev/stdin --channel LTS --install-dir /usr/share/dotnet
@@ -38,26 +37,22 @@ dotnet dev-certs https
 curl -sSL https://dot.net/v1/dotnet-install.sh | bash /dev/stdin --channel 8.0 --install-dir /usr/share/dotnet
 ln -s /usr/share/dotnet/dotnet /usr/bin/dotnet
 
+# Docker - Uninstall old versions
+for pkg in docker.io docker-doc docker-compose podman-docker containerd runc; do apt-get remove $pkg; done
+
 # Add Docker's official GPG key:
-sudo apt-get update
-sudo apt-get install ca-certificates curl
-sudo install -m 0755 -d /etc/apt/keyrings
-sudo curl -fsSL https://download.docker.com/linux/debian/gpg -o /etc/apt/keyrings/docker.asc
-sudo chmod a+r /etc/apt/keyrings/docker.asc
+apt-get update
+apt-get install ca-certificates curl
+install -m 0755 -d /etc/apt/keyrings
+curl -fsSL https://download.docker.com/linux/debian/gpg -o /etc/apt/keyrings/docker.asc
+chmod a+r /etc/apt/keyrings/docker.asc
 
 # Add the repository to Apt sources:
 echo \
   "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.asc] https://download.docker.com/linux/debian \
   $(. /etc/os-release && echo "$VERSION_CODENAME") stable" | \
-  sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
-sudo apt-get update
-
-# Docker Install
-sudo apt-get install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
-
-# NodeJS LTS
-# curl -fsSL https://deb.nodesource.com/setup_lts.x | sudo bash -
-# apt install -y nodejs
+  tee /etc/apt/sources.list.d/docker.list > /dev/null
+apt-get update
 
 # Python 3
 apt install python3 -y
