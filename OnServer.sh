@@ -7,7 +7,7 @@ DEBIAN_FRONTEND=noninteractive apt-get update && DEBIAN_FRONTEND=noninteractive 
 apt install curl -y
 apt install wget -y
 apt install unzip -y
-apt install nginx -y
+# apt install nginx -y
 apt install nano -y
 apt install sed -y
 apt install openssl -y
