@@ -7,7 +7,7 @@ DEBIAN_FRONTEND=noninteractive apt-get update && DEBIAN_FRONTEND=noninteractive 
 apt install curl -y
 apt install wget -y
 apt install unzip -y
-apt install nginx -y
+# apt install nginx -y
 apt install nano -y
 apt install sed -y
 apt install openssl -y
@@ -23,11 +23,11 @@ ufw allow 443/tcp
 ufw allow 27017/tcp
 
 # Index & Certificates
-rm /var/www/html/index.nginx-debian.html
-wget -O /var/www/html/index.html https://raw.githubusercontent.com/DeployRise/OnServer/main/tools/index.html
-openssl genpkey -algorithm RSA -out /etc/ssl/certificate.key -pkeyopt rsa_keygen_bits:2048
-openssl req -new -key /etc/ssl/certificate.key -out /etc/ssl/certificate.csr -subj "/CN=example.com"
-openssl x509 -req -days 5475 -in /etc/ssl/certificate.csr -signkey /etc/ssl/certificate.key -out /etc/ssl/certificate.crt
+# rm /var/www/html/index.nginx-debian.html
+# wget -O /var/www/html/index.html https://raw.githubusercontent.com/DeployRise/OnServer/main/tools/index.html
+# openssl genpkey -algorithm RSA -out /etc/ssl/certificate.key -pkeyopt rsa_keygen_bits:2048
+# openssl req -new -key /etc/ssl/certificate.key -out /etc/ssl/certificate.csr -subj "/CN=example.com"
+# openssl x509 -req -days 5475 -in /etc/ssl/certificate.csr -signkey /etc/ssl/certificate.key -out /etc/ssl/certificate.crt
 
 # .NET Core LTS
 curl -sSL https://dot.net/v1/dotnet-install.sh | bash /dev/stdin --channel LTS --install-dir /usr/share/dotnet
