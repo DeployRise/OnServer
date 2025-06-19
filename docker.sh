@@ -13,9 +13,6 @@ apt install nano -y
 apt install ufw -y
 echo "y" | ufw enable
 ufw allow 22/tcp
-ufw allow 80/tcp
-ufw allow 443/tcp
-ufw allow 27017/tcp
 
 # Docker
 wget -O- https://raw.githubusercontent.com/DeployRise/OnServer/main/docker-install.sh | sudo /bin/bash
