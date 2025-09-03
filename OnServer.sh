@@ -48,7 +48,8 @@ systemctl enable chrony
 systemctl start chrony
 
 # Glances Service
-pip install glances[all] --break-system-packages
+# pip install glances[all] --break-system-packages
+pip install glances[all] --break-system-packages --ignore-installed --force-reinstall urllib3
 wget -O /etc/systemd/system/glances.service https://raw.githubusercontent.com/DeployRise/OnServer/main/glances.service
 systemctl start glances
 systemctl enable glances
