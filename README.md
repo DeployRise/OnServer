@@ -2,7 +2,7 @@
 ```wget -O- https://bit.ly/On-Srv | sudo /bin/bash```
 
 ### Install Docker
-```wget -O- https://raw.githubusercontent.com/DeployRise/OnServer/refs/heads/main/docker.sh | sudo /bin/bash```
+```wget -O- https://raw.githubusercontent.com/DeployRise/OnServer/refs/heads/main/dockero.sh | sudo /bin/bash```
 
 ## Install All
 ```wget -O- https://raw.githubusercontent.com/DeployRise/OnServer/main/OnServer.sh | sudo /bin/bash```
