@@ -9,6 +9,13 @@ apt install wget -y
 apt install unzip -y
 apt install nano -y
 
+# Firewall
+apt install ufw -y
+echo "y" | ufw enable
+ufw allow 22/tcp
+ufw allow 80/tcp
+ufw allow 443/tcp
+
 # Docker
 wget -O- https://raw.githubusercontent.com/DeployRise/OnServer/main/docker-install.sh | sudo /bin/bash
 
