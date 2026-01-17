@@ -36,6 +36,7 @@ docker run -d --name glances --restart always --pid host --network host -e GLANC
 # Firewall
 apt install ufw -y
 ufw allow 22/tcp
+ufw allow 27017/tcp
 echo "y" | ufw enable
 
 # Firewall Docker
