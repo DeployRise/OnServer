@@ -32,17 +32,3 @@ docker run -d --name glances --restart always --pid host --network host -e GLANC
   -v "/root/nginxproxymanager/data:/data" \
   -v "/root/nginxproxymanager/letsencrypt:/etc/letsencrypt" \
   docker.io/jc21/nginx-proxy-manager:latest
-
-# Firewall
-apt install ufw -y
-ufw allow 22/tcp
-ufw allow 27017/tcp
-echo "y" | ufw enable
-
-# Firewall Docker
-wget -O /usr/local/bin/ufw-docker https://github.com/chaifeng/ufw-docker/raw/master/ufw-docker
-chmod +x /usr/local/bin/ufw-docker
-ufw-docker install
-ufw-docker allow nginxproxymanager 80/tcp
-ufw-docker allow nginxproxymanager 443/tcp
-ufw-docker allow nginxproxymanager 81/tcp
