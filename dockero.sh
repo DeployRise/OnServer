@@ -25,6 +25,7 @@ systemctl enable firewalld
 firewall-cmd --permanent --add-service=ssh
 firewall-cmd --permanent --add-service=http
 firewall-cmd --permanent --add-service=https
+firewall-cmd --permanent --add-port-25565/tcp
 firewall-cmd --reload
 firewall-cmd --permanent --add-port=81/tcp
 
