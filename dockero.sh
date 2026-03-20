@@ -25,9 +25,9 @@ systemctl enable firewalld
 firewall-cmd --permanent --add-service=ssh
 firewall-cmd --permanent --add-service=http
 firewall-cmd --permanent --add-service=https
-firewall-cmd --permanent --add-port-25565/tcp
+firewall-cmd --permanent --add-port=25565/tcp
 firewall-cmd --reload
-firewall-cmd --permanent --add-port=81/tcp
+firewall-cmd --add-port=81/tcp
 
 # Glances
 docker run -d --name glances --restart="always" --network ljchuello -p 85:80 -v /var/run/docker.sock:/var/run/docker.sock:ro -e GLANCES_OPT="-w -p 80" --pid host nicolargo/glances:latest-full
