@@ -18,6 +18,16 @@ apt install chrony -y
 systemctl enable chrony
 systemctl start chrony
 
+# Firewalld
+apt install firewalld -y
+systemctl start firewalld
+systemctl enable firewalld
+firewall-cmd --permanent --add-service=ssh
+firewall-cmd --permanent --add-service=http
+firewall-cmd --permanent --add-service=https
+# firewall-cmd --permanent --add-port=8081/tcp
+firewall-cmd --reload
+
 # Glances
 docker run -d --name glances --restart="always" --network ljchuello -p 85:80 -e GLANCES_OPT="-w -p 80" --pid host nicolargo/glances:latest-full
 
