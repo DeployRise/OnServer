@@ -20,13 +20,13 @@ systemctl start chrony
 
 # Firewalld
 apt install firewalld -y
-systemctl start firewalld
-systemctl enable firewalld
-firewall-cmd --zone=public --add-masquerade --permanent
 firewall-cmd --permanent --add-service=ssh
 firewall-cmd --permanent --add-service=http
 firewall-cmd --permanent --add-service=https
 firewall-cmd --permanent --add-port=25565/tcp
+firewall-cmd --permanent --zone=public --add-masquerade
+systemctl enable firewalld
+systemctl start firewalld
 firewall-cmd --reload
 firewall-cmd --add-port=81/tcp
 
