@@ -22,6 +22,7 @@ systemctl start chrony
 apt install firewalld -y
 systemctl start firewalld
 systemctl enable firewalld
+firewall-cmd --zone=public --add-masquerade --permanent
 firewall-cmd --permanent --add-service=ssh
 firewall-cmd --permanent --add-service=http
 firewall-cmd --permanent --add-service=https
