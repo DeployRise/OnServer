@@ -19,7 +19,7 @@ systemctl enable chrony
 systemctl start chrony
 
 # Glances
-docker run -d --name glances --restart always --pid host --network host -e GLANCES_OPT="-w -p 27017 -t 3" nicolargo/glances:latest-full
+docker run -d --name glances --restart="always" --network ljchuello -p 85:80 -e GLANCES_OPT="-w -p 80" --pid host nicolargo/glances:latest-full
 
 # Nginx Proxy Manager
 docker run -d \
