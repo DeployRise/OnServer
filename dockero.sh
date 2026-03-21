@@ -18,20 +18,20 @@ apt install chrony -y
 systemctl enable chrony
 systemctl start chrony
 
-# Firewalld
-apt install firewalld -y
-firewall-cmd --permanent --add-service=ssh
-firewall-cmd --permanent --add-service=http
-firewall-cmd --permanent --add-service=https
-firewall-cmd --permanent --add-port=25565/tcp
-firewall-cmd --permanent --zone=public --add-masquerade
-systemctl enable firewalld
-systemctl start firewalld
-firewall-cmd --reload
-firewall-cmd --add-port=81/tcp
+# Firewall
+apt install ufw -y
+echo "y" | ufw enable
+ufw allow 22/tcp
+ufw allow 80/tcp
+ufw allow 443/tcp
+
+# .NET Core LTS
+curl -sSL https://dot.net/v1/dotnet-install.sh | bash /dev/stdin --channel LTS --install-dir /usr/share/dotnet
+ln -s /usr/share/dotnet/dotnet /usr/bin/dotnet
+dotnet dev-certs https
 
 # Glances
-docker run -d --name glances --restart="always" --network ljchuello -p 85:80 -v /var/run/docker.sock:/var/run/docker.sock:ro -e GLANCES_OPT="-w -p 80" --pid host nicolargo/glances:latest-full
+docker run -d --name glances --restart="always" --network ljchuello -v /var/run/docker.sock:/var/run/docker.sock:ro -e GLANCES_OPT="-w -p 8085" --pid host nicolargo/glances:latest-full
 
 # Nginx Proxy Manager
 docker run -d \
