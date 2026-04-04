@@ -1,21 +1,66 @@
 #!/bin/bash
 
-# Elimina los paquetes especificados
-for pkg in docker.io docker-doc docker-compose podman-docker containerd runc; do sudo apt-get remove -y $pkg; done
+# 1. Verificar si el usuario tiene privilegios de root
+if [ "$EUID" -ne 0 ]; then 
+  echo "Por favor, corre el script usando sudo o como root."
+  exit
+fi
 
-# Añade la clave GPG oficial de Docker
-sudo apt-get update
-sudo apt-get install -y ca-certificates curl
-sudo install -m 0755 -d /etc/apt/keyrings
-sudo curl -fsSL https://download.docker.com/linux/debian/gpg -o /etc/apt/keyrings/docker.asc
-sudo chmod a+r /etc/apt/keyrings/docker.asc
+# 2. Detectar la distribución de Linux
+if [ -f /etc/os-release ]; then
+    . /etc/os-release
+    OS=$ID
+else
+    echo "No se pudo detectar el sistema operativo."
+    exit 1
+fi
 
-# Añade el repositorio a las fuentes de Apt
-echo \
-  "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.asc] https://download.docker.com/linux/debian \
-  $(. /etc/os-release && echo "$VERSION_CODENAME") stable" | \
-  sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
-sudo apt-get update
+# 3. Lógica de instalación por distribución
+case $OS in
+    ubuntu|debian|raspbian|kali|pop|linuxmint)
+        # Usar el script oficial de conveniencia para la familia Debian
+        curl -fsSL https://get.docker.com | sh
+        ;;
+    fedora|centos|rhel|rocky|almalinux|ol|amzn)
+        # Usar el script oficial para la familia Red Hat
+        curl -fsSL https://get.docker.com | sh
+        ;;
+    arch|manjaro|endeavouros)
+        # Instalación nativa para Arch Linux
+        pacman -S --noconfirm docker docker-compose
+        ;;
+    alpine)
+        # Instalación nativa para Alpine
+        apk add docker docker-compose
+        rc-update add docker default
+        service docker start
+        ;;
+    opensuse*|suse)
+        # Instalación para openSUSE
+        zypper install -y docker docker-compose
+        ;;
+    *)
+        echo "Distribución no soportada directamente por este script."
+        echo "Intentando usar el script oficial de Docker por si acaso..."
+        curl -fsSL https://get.docker.com | sh
+        ;;
+esac
 
-# Instala Docker y sus componentes
-sudo apt-get install -y docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
+# 4. Post-instalación (Habilitar y arrancar servicio)
+echo "Configurando servicios..."
+if command -v systemctl >/dev/null; then
+    systemctl enable --now docker
+elif command -v rc-update >/dev/null; then
+    # Para sistemas sin systemd (como Alpine)
+    rc-update add docker default
+    service docker start
+fi
+
+# 5. Agregar usuario actual al grupo docker (opcional pero recomendado)
+# Nota: USER_NAME es quien invocó el sudo
+USER_NAME=${SUDO_USER:-$USER}
+usermod -aG docker $USER_NAME
+
+echo "--------------------------------------------------------"
+echo "¡Docker instalado con éxito!"
+echo "--------------------------------------------------------"
