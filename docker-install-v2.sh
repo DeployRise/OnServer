@@ -15,9 +15,6 @@ else
     exit 1
 fi
 
-echo "Detectado: $OS"
-echo "Iniciando instalación de Docker..."
-
 # 3. Lógica de instalación por distribución
 case $OS in
     ubuntu|debian|raspbian|kali|pop|linuxmint)
@@ -65,7 +62,5 @@ USER_NAME=${SUDO_USER:-$USER}
 usermod -aG docker $USER_NAME
 
 echo "--------------------------------------------------------"
-echo "¡Instalación completada con éxito!"
-echo "IMPORTANTE: Reinicia tu sesión para usar docker sin sudo."
-echo "Comando de prueba: docker --version"
+echo "¡Docker instalado con éxito!"
 echo "--------------------------------------------------------"
