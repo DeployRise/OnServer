@@ -31,7 +31,13 @@ ln -s /usr/share/dotnet/dotnet /usr/bin/dotnet
 dotnet dev-certs https
 
 # Glances
-docker run -d --name glances --restart="always" --network ljchuello -v /var/run/docker.sock:/var/run/docker.sock:ro -e GLANCES_OPT="-w -p 8085" --pid host nicolargo/glances:latest-full
+docker run -d --name glances --restart="always" \
+  --network host \
+  --pid host \
+  -v /var/run/docker.sock:/var/run/docker.sock:ro \
+  -v /:/host:ro \
+  -e GLANCES_OPT="-w -p 8085" \
+  nicolargo/glances:latest-full
 
 # Nginx Proxy Manager
 docker run -d \
