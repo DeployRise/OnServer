@@ -1,6 +1,9 @@
 ## Install All
 ```wget -O- https://bit.ly/On-Srv | sudo /bin/bash```
 
+### Install OC
+```wget -O- https://raw.githubusercontent.com/DeployRise/OnServer/refs/heads/main/oc.sh | sudo /bin/bash```
+
 ### Install Docker
 ```wget -O- https://raw.githubusercontent.com/DeployRise/OnServer/refs/heads/main/dockero.sh | sudo /bin/bash```
 
